@@ -29,7 +29,8 @@ class DeleteReminderAction:
 
 class ShowReminderActions:
     def execute(self, phone_number):
-        return show_user_reminders_with_id(phone_number)
+        reminders = show_user_reminders_with_id(phone_number)
+        return f"Here are your reminders:\n{reminders}"
 
 
 class ActionDecider:
@@ -69,7 +70,6 @@ class ActionDecider:
 
         elif action == 'delete_reminder':
             return DeleteReminderAction().execute(
-                gpt_result['phone_number'],
-                gpt_result['message'])
+                gpt_result['reminder_id'])
         else:
-            return f'uWu I can\'t do that {action} yet'
+            return f'I can\'t do that {action} yet uWu'

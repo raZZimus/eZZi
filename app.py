@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from action_decider import ActionDecider
+from scheduler import start_scheduler
 
 
 app = Flask(__name__)
@@ -26,4 +27,6 @@ def whatsapp_webhook():
 
 
 if __name__ == "__main__":
+    start_scheduler()
+
     app.run(debug=True, port=11996)

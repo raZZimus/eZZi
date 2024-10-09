@@ -12,6 +12,7 @@ SYSTEM_PROMPT = """
 You are a virtual assistant that manages reminders.
 Your task is to parse user input and respond with JSON-formatted data that includes:
 - action (e.g., add_reminder, show_reminders, delete_reminder, edit_reminder)
+- reminder_id (if the user specifies a reminder number)
 - phone_number (if provided in the input)
 - message (the content of the reminder)
 - date (for the reminder, in YYYY-MM-DD format)
@@ -37,7 +38,6 @@ Always respond with a JSON dictionary. For example:
   "recurrence_interval": null
 }
 """
-
 def process_message_with_gpt(message, phone_number=None, timezone=None):
     try:
         current_time = datetime.now()
