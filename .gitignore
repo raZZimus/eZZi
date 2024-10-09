@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+.env
+venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Databases
+*.sqlite3
+
+# Build artifacts
+dist/
+build/
+
+# Testing
+.coverage
+htmlcov/
+
+# macO
