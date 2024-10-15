@@ -2,6 +2,7 @@ from openai import OpenAI
 from config import OPENAI_API_KEY
 from datetime import datetime, date, time
 import json
+import logging
 
 # Initialize the OpenAI client
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -38,6 +39,9 @@ Always respond with a JSON dictionary. For example:
   "recurrence_interval": null
 }
 """
+
+logger = logging.getLogger(__name__)
+
 def process_message_with_gpt(message, phone_number=None, timezone=None):
     try:
         current_time = datetime.now()
@@ -64,9 +68,9 @@ def process_message_with_gpt(message, phone_number=None, timezone=None):
         
         return parsed_content
     except json.JSONDecodeError as e:
-        print(f"Error parsing JSON response: {e}")
-        print(f"Raw response: {response_content}")
+        logger.error(f"Error parsing JSON response: {e}")
+        logger.error(f"Raw response: {response_content}")
     except Exception as e:
-        print(f"Error processing message with GPT: {str(e)}")
+        logger.error(f"Error processing message with GPT: {str(e)}")
     
     return None
